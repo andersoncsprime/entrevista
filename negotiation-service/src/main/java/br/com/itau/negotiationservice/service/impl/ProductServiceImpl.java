@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
     @Override
-    public Mono<ProductDTO> getById(String id) {
+    public Mono<ProductDTO> getById(Integer id) {
         return productRepository.findById(id);
     }
     @Override
@@ -29,13 +29,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Mono<ProductDTO> saveProduct(ProductDTO product) {
+    public Mono<ProductDTO> save(ProductDTO product) {
         log.info("Save product: {}, {}", product.getDescriptorProduct(), product.getSegment());
         return productRepository.save(product);
     }
 
     @Override
-    public Mono<Void> delete(String id) {
+    public Mono<Void> delete(Integer id) {
         return productRepository.deleteById(id);
     }
 }

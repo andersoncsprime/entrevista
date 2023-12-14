@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 public class ClientDTO {
     @Id
-    private String id;
+    private Integer id;
     private String nome;
     private String cpf;
 

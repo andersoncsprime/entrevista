@@ -20,7 +20,7 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping("/{id}")
-    public Mono<ClientDTO> getById(@PathVariable("id") final String id) {
+    public Mono<ClientDTO> getById(@PathVariable("id") final Integer id) {
         return clientService.getById(id);
     }
 
@@ -31,11 +31,11 @@ public class ClientController {
 
     @PostMapping("save")
     public Mono<ClientDTO> saveProduct(@RequestBody ClientDTO client) {
-        return clientService.saveCient(client);
+        return clientService.save(client);
     }
 
     @DeleteMapping("delete/{id}")
-    public Mono<Void> deleteVoidMono(@PathVariable("id") final String id) {
+    public Mono<Void> deleteVoidMono(@PathVariable("id") final Integer id) {
         return clientService.delete(id);
     }
 }

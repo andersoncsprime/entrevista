@@ -15,9 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class NegotiationDTO {
 
     @Id
-    private String id;
+    private Integer id;
     private String id_client;
     private String id_product;
-    private String n_contract;
-    private Double billing;
+    private double valor;
 }

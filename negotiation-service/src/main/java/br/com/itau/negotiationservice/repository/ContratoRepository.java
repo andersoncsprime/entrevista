@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface ContratoRepository extends ReactiveMongoRepository<ContratoDTO, String> {
+public interface ContratoRepository extends ReactiveMongoRepository<ContratoDTO, Integer> {
     Mono<ContratoDTO> findByCPF(String cpf);
 }

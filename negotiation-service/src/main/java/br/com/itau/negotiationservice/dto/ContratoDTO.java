@@ -14,9 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 public class ContratoDTO {
     @Id
-    private String id;
-    private String nomeCliente;
-    private String cpf;
-    private double valor;
-    private boolean renegociado;
+    private Integer id;
+    private ClientDTO clientDTO;
+    private ProductDTO productDTO;
+    private DividaDTO dividaDTO;
+    private NegotiationDTO negotiationDTO;
 }

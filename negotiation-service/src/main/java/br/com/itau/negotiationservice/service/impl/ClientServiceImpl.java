@@ -17,7 +17,7 @@ public class ClientServiceImpl implements ClientService {
 
     private ClientRepository clientRepository;
     @Override
-    public Mono<ClientDTO> getById(String id) {
+    public Mono<ClientDTO> getById(Integer id) {
         return clientRepository.findById(id);
     }
 
@@ -27,13 +27,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Mono<ClientDTO> saveCient(ClientDTO client) {
+    public Mono<ClientDTO> save(ClientDTO client) {
         return clientRepository.save(client);
     }
 
-
     @Override
-    public Mono<Void> delete(String id) {
+    public Mono<Void> delete(Integer id) {
         return clientRepository.deleteById(id);
     }
 }
