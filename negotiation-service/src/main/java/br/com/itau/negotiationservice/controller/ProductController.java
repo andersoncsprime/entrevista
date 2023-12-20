@@ -19,7 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/{id}")
-    public Mono<ProductDTO> getById(@PathVariable("id") final Integer id) {
+    public Mono<ProductDTO> getById(@PathVariable("id") final String id) {
         return productService.getById(id);
     }
 
@@ -30,11 +30,13 @@ public class ProductController {
 
     @PostMapping("save")
     public Mono<ProductDTO> saveProduct(@RequestBody ProductDTO product) {
+
         return productService.save(product);
     }
 
     @DeleteMapping("delete/{id}")
-    public Mono<Void> saveProduct(@PathVariable("id") final Integer id) {
+    public Mono<Void> saveProduct(@PathVariable("id") final String id) {
+
         return productService.delete(id);
     }
 

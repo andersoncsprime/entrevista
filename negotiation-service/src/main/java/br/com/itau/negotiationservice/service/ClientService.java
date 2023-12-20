@@ -6,11 +6,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface ClientService {
-    Mono<ClientDTO> getById(Integer id);
+    Mono<ClientDTO> getById(String id);
 
     Flux<ClientDTO> getAll();
 
     Mono<ClientDTO> save(ClientDTO client);
 
-    Mono<Void> delete(Integer id);
+    Mono<Void> delete(String id);
 }

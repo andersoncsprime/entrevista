@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @ToString
 public class AcordoDTO {
 
-    private int id;
-    private int id_divida;
+    private String id;
+    private String id_divida;
     private LocalDateTime dataProposta;
     private double valorParcela;
     private double juros;

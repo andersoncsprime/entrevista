@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
     @Override
-    public Mono<ProductDTO> getById(Integer id) {
+    public Mono<ProductDTO> getById(String id) {
         return productRepository.findById(id);
     }
     @Override
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Mono<Void> delete(Integer id) {
+    public Mono<Void> delete(String id) {
         return productRepository.deleteById(id);
     }
 }

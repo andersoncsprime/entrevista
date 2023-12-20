@@ -7,11 +7,11 @@ import reactor.core.publisher.Mono;
 
 public interface DividaService {
 
-    Mono<DividaDTO> getById(Integer id);
+    Mono<DividaDTO> getById(String id);
 
     Flux<DividaDTO> getAll();
 
     Mono<DividaDTO> save(DividaDTO dividaDTO);
 
-    Mono<Void> delete(Integer id);
+    Mono<Void> delete(String id);
 }

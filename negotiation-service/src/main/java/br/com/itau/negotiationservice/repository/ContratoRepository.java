@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface ContratoRepository extends ReactiveMongoRepository<ContratoDTO, Integer> {
+public interface ContratoRepository extends ReactiveMongoRepository<ContratoDTO, String> {
 }

@@ -5,6 +5,7 @@ import br.com.itau.negotiationservice.dto.ProductDTO;
 import br.com.itau.negotiationservice.repository.ClientRepository;
 import br.com.itau.negotiationservice.service.ClientService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
@@ -15,9 +16,10 @@ import reactor.core.publisher.Mono;
 @AllArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
+    @Autowired
     private ClientRepository clientRepository;
     @Override
-    public Mono<ClientDTO> getById(Integer id) {
+    public Mono<ClientDTO> getById(String id) {
         return clientRepository.findById(id);
     }
 
@@ -32,7 +34,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Mono<Void> delete(Integer id) {
+    public Mono<Void> delete(String id) {
         return clientRepository.deleteById(id);
     }
 }

@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ProductDTO {
 
     @Id
-    private int id;
+    private String id;
     private String descriptorProduct;
     private String segment;
 }

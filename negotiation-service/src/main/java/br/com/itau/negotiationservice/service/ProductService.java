@@ -5,11 +5,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface ProductService {
-    Mono<ProductDTO> getById(Integer id);
+    Mono<ProductDTO> getById(String id);
 
     Flux<ProductDTO> getAll() ;
 
     Mono<ProductDTO> save(ProductDTO product);
 
-    Mono<Void> delete(Integer id);
+    Mono<Void> delete(String id);
 }

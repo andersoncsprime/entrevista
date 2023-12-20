@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 
 public interface NegotiationService {
 
-    Mono<AcordoDTO> simular(int idDivida,int qtdParcelas);
+    Mono<AcordoDTO> simular(String idDivida,int qtdParcelas);
 
-    Mono<ContratoDTO> contratar(DividaDTO dividaDTO);
+    Mono<ContratoDTO> contratar(String idAcordo);
 }

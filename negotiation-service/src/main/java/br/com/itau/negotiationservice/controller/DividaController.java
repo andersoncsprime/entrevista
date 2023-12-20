@@ -14,7 +14,8 @@ public class DividaController {
     private DividaService dividaService;
 
     @GetMapping("/{id}")
-    public Mono<DividaDTO> getById(@PathVariable("id") final Integer id) {
+    public Mono<DividaDTO> getById(@PathVariable("id") final String id) {
+
         return dividaService.getById(id);
     }
 
@@ -25,11 +26,12 @@ public class DividaController {
 
     @PostMapping("save")
     public Mono<DividaDTO> save(@RequestBody DividaDTO dividaDTO) {
+
         return dividaService.save(dividaDTO);
     }
 
     @DeleteMapping("delete/{id}")
-    public Mono<Void> deleteVoidMono(@PathVariable("id") final Integer id) {
+    public Mono<Void> deleteVoidMono(@PathVariable("id") final String id) {
         return dividaService.delete(id);
     }
   

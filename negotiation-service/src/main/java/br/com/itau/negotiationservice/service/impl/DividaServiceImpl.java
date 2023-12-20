@@ -16,7 +16,7 @@ public class DividaServiceImpl implements DividaService {
 
     private DividaRepository dividaRepository;
     @Override
-    public Mono<DividaDTO> getById(Integer id) {
+    public Mono<DividaDTO> getById(String id) {
         return dividaRepository.findById(id);
     }
 
@@ -31,7 +31,7 @@ public class DividaServiceImpl implements DividaService {
     }
 
     @Override
-    public Mono<Void> delete(Integer id) {
+    public Mono<Void> delete(String id) {
         return dividaRepository.deleteById(id);
     }
 }

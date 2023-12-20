@@ -20,7 +20,8 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping("/{id}")
-    public Mono<ClientDTO> getById(@PathVariable("id") final Integer id) {
+    public Mono<ClientDTO> getById(@PathVariable("id") final String id) {
+
         return clientService.getById(id);
     }
 
@@ -35,7 +36,7 @@ public class ClientController {
     }
 
     @DeleteMapping("delete/{id}")
-    public Mono<Void> deleteVoidMono(@PathVariable("id") final Integer id) {
+    public Mono<Void> deleteVoidMono(@PathVariable("id") final String id) {
         return clientService.delete(id);
     }
 }

@@ -15,9 +15,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class DividaDTO {
 
     @Id
-    private Integer id;
-    private Integer id_product;
-    private Integer id_client;
+    private String id;
+    private String id_product;
+    private String id_client;
     private double valor;
     private double percentualJuros;
 
