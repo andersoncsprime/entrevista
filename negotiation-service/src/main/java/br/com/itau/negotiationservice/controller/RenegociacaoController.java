@@ -1,5 +1,6 @@
 package br.com.itau.negotiationservice.controller;
 
+import br.com.itau.negotiationservice.dto.AcordoDTO;
 import br.com.itau.negotiationservice.dto.ContratoDTO;
 import br.com.itau.negotiationservice.dto.DividaDTO;
 import br.com.itau.negotiationservice.dto.ProductDTO;
@@ -16,19 +17,16 @@ public class RenegociacaoController {
     @Autowired
    private NegotiationService negotiationService;
 
-    @PutMapping("/negociar")
+    @PutMapping("/contratar")
     public Mono<ContratoDTO> negociar(@RequestBody DividaDTO dividaDTO) {
-        return negotiationService.negociar(dividaDTO);
+        return negotiationService.contratar(dividaDTO);
     }
 
-//    @PostMapping("/{cpf}")
-//    public Mono<String> renegociarContrato(@PathVariable String cpf, @RequestBody ContratoDTO novoContrato) {
-//        return contratoRepository.findByCPF(cpf)
-//                .flatMap(contratoExistente -> {
-//                    contratoExistente.setValor(novoContrato.getValor());
-//                    contratoExistente.setRenegociado(true);
-//                    return contratoRepository.save(contratoExistente).thenReturn("Contrato renegociado com sucesso.");
-//                })
-//                .switchIfEmpty(Mono.just("Contrato não encontrado."));
-//    }
+    @PutMapping("/simular")
+    public Mono<AcordoDTO> simular(@RequestParam(value = "qtdParcelas") int qtdParcelas,
+    @RequestParam(value = "idDivida") int idDivida) {
+        return negotiationService.simular(idDivida, qtdParcelas);
+    }
+
+
 }

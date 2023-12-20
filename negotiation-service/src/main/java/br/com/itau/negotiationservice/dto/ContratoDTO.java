@@ -18,5 +18,6 @@ public class ContratoDTO {
     private ClientDTO clientDTO;
     private ProductDTO productDTO;
     private DividaDTO dividaDTO;
+    private AcordoDTO acordoDTO;
     private NegotiationDTO negotiationDTO;
 }

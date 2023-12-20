@@ -7,5 +7,4 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface ContratoRepository extends ReactiveMongoRepository<ContratoDTO, Integer> {
-    Mono<ContratoDTO> findByCPF(String cpf);
 }
