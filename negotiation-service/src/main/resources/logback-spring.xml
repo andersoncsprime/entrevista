@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <springProperty name="APP_NAME" scope="context"  source="spring.application.name" defaultValue="springBoot"/>
+    <springProperty name="PROJECT_VERSION" scope="context"  source="app.project.version" defaultValue="NONE"/>
+    <springProperty name="ENV" scope="context"  source="spring.profiles.active" defaultValue="local"/>
+    <springProperty name="LOG_STASH_HOST" scope="context" source="logstash.host" defaultValue="localhost:5000"/>
+    <springProperty name="ENABLE_INNER_LOG" scope="context" source="logstash.enableInnerLog" defaultValue="false"/>
+    <springProperty name="PREFIX_LOG" scope="context" source="logstash.prefix" defaultValue="NONE"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_PATH}/${APP_NAME}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-30}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="LOG_STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>${LOG_STASH_HOST}</destination>
+        <addDefaultStatusListener>${ENABLE_INNER_LOG}</addDefaultStatusListener>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>America/Sao_Paulo</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "project": "${PREFIX_LOG}",
+                        "service":"${APP_NAME:-}",
+                        "level": "%level",
+                        "thread": "%thread",
+                        "message": "%message",
+                        "class": "%logger",
+                        "stack_trace": "%exception{20}",
+                        "translated_code": "%mdc{translated_code}",
+                        "total_time_request": "%mdc{total_time_request}",
+                        "fail_type": "%mdc{fail_type}",
+                        "host_back": "%mdc{host_back}",
+                        "response_code_external": "%mdc{response_code_external}",
+                        "mdc": {
+                        "environment": "${ENV}",
+                        "msisdn": "%mdc{msisdn}",
+                        "userAgent": "%mdc{User-Agent}",
+                        "request_id": "%mdc{requestId}",
+                        "session_id": "%mdc{session_id}",
+                        "step": "%mdc{step}",
+                        "segment": "%mdc{segment}",
+                        "request_method": "%mdc{request_method}",
+                        "request_headers": "%mdc{request_headers}",
+                        "request_queryString": "%mdc{request_query}",
+                        "request_requestURL": "%mdc{request_uri}",
+                        "request_path": "%mdc{request_path}",
+                        "request_body": "%mdc{request_body}",
+                        "response_body": "%mdc{response_body}",
+                        "response_headers": "%mdc{response_headers}",
+                        "response_code": "%mdc{response_code}"
+                        }
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE"/>
+    </root>
+
+
+    <logger name="br.com.meutim" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="LOG_STASH"/>
+    </logger>
+</configuration>

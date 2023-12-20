@@ -21,14 +21,14 @@ public class RenegociacaoController {
         return negotiationService.negociar(dividaDTO);
     }
 
-    @PostMapping("/{cpf}")
-    public Mono<String> renegociarContrato(@PathVariable String cpf, @RequestBody ContratoDTO novoContrato) {
-        return contratoRepository.findByCPF(cpf)
-                .flatMap(contratoExistente -> {
-                    contratoExistente.setValor(novoContrato.getValor());
-                    contratoExistente.setRenegociado(true);
-                    return contratoRepository.save(contratoExistente).thenReturn("Contrato renegociado com sucesso.");
-                })
-                .switchIfEmpty(Mono.just("Contrato não encontrado."));
-    }
+//    @PostMapping("/{cpf}")
+//    public Mono<String> renegociarContrato(@PathVariable String cpf, @RequestBody ContratoDTO novoContrato) {
+//        return contratoRepository.findByCPF(cpf)
+//                .flatMap(contratoExistente -> {
+//                    contratoExistente.setValor(novoContrato.getValor());
+//                    contratoExistente.setRenegociado(true);
+//                    return contratoRepository.save(contratoExistente).thenReturn("Contrato renegociado com sucesso.");
+//                })
+//                .switchIfEmpty(Mono.just("Contrato não encontrado."));
+//    }
 }
